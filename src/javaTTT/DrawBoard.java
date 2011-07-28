@@ -1,3 +1,5 @@
+package javaTTT;
+
 public class DrawBoard {
 
   public static void draw(Board board) {

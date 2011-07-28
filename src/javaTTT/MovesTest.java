@@ -1,18 +1,27 @@
-import junit.framework.TestCase;
-import java.io.*;
+package javaTTT;
 
-public class MovesTest extends TestCase {
+import org.junit.Before;
+import org.junit.Test;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
+import static org.junit.Assert.assertEquals;
+
+public class MovesTest {
 
   static Moves moves;
-  static HumanPlayer player1;
-  static HumanPlayer player2;
+  static HumanPlayerCL player1;
+  static HumanPlayerCL player2;
 
+  @Before
   public void setUp() {
     moves = new Moves();
-    player1 = new HumanPlayer( 1, "Marcellus Wallace");
-    player2 = new HumanPlayer( -1, "Butch");
+    player1 = new HumanPlayerCL( 1, "Marcellus Wallace");
+    player2 = new HumanPlayerCL( -1, "Butch");
   }
 
+  @Test
   public void testBoardCellsSetOnMove() {
     int expectedCellValue = -1;
     int[] cell = {2,1};
@@ -22,12 +31,15 @@ public class MovesTest extends TestCase {
   }
 
   private static void fakeMove(Player player) {
-    HumanPlayer humanPlayer = (HumanPlayer) player;
+    HumanPlayerCL humanPlayer = (HumanPlayerCL) player;
     String[] input = {"2\n1", "3, 0", "-1,2", "1\n1"};
     InputStream stream = new ByteArrayInputStream(input[0].getBytes());
     int[] move = humanPlayer.promptForMove(stream);
     int i = 1;
-    while( move.length < 2 || move[0] > moves.board.dimension - 1 || move[0] < 0 || move[1] > moves.board.dimension - 1 || move[1] < 0 || moves.board.cellValueAt(move) != 0 ){
+    while( move.length < 2 || move[0] > moves.board.dimension - 1 ||
+           move[0] < 0     || move[1] > moves.board.dimension - 1 ||
+           move[1] < 0     || moves.board.cellValueAt(move) != 0 )
+    {
       stream = new ByteArrayInputStream(input[i].getBytes());
       move = humanPlayer.promptForMove(stream);
       i++;
@@ -35,6 +47,7 @@ public class MovesTest extends TestCase {
     moves.board.setCellValue( move, humanPlayer.playerValue());
   }
 
+  @Test
   public void testMoveDoesNotAcceptInvalidMoves() {
     int[] move1 = {2,1};
     int[] move2 = {1,1};

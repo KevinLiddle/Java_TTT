@@ -1,4 +1,6 @@
-import java.io.*;
+package javaTTT;
+
+import java.io.InputStream;
 import java.util.Scanner;
 
 public class Game {
@@ -15,8 +17,8 @@ public class Game {
 
   public void createPlayers() {
     String[] names = playerNames();
-    player1 = new HumanPlayer(PLAYER_1_VALUE, names[0]);
-    player2 = new HumanPlayer(PLAYER_2_VALUE, names[1]);
+    player1 = new HumanPlayerCL(PLAYER_1_VALUE, names[0]);
+    player2 = new HumanPlayerCL(PLAYER_2_VALUE, names[1]);
   }
 
   private String[] playerNames() {

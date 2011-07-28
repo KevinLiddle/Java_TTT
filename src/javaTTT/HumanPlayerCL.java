@@ -1,22 +1,13 @@
-import java.util.*;
-import java.io.*;
+package javaTTT;
 
-public class HumanPlayer implements Player {
+import java.io.InputStream;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
-  private int playerValue;
-  private String playerName;
+public class HumanPlayerCL extends Player {
 
-  public HumanPlayer(int value, String name) {
-    playerValue = value;
-    playerName = name;
-  }
-
-  public int playerValue() {
-    return playerValue;
-  }
-
-  public String playerName() {
-    return playerName;
+  public HumanPlayerCL(int playerValue, String playerName){
+    super(playerValue, playerName);
   }
 
   public int[] move() {

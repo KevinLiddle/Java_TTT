@@ -1,3 +1,5 @@
+package javaTTT;
+
 public class Moves {
 
   Board board;
